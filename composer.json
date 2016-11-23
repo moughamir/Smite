@@ -1,0 +1,15 @@
+{
+    "name": "moughamir/smitedraft",
+    "description": "Smite Match Draft",
+    "type": "project",
+    "require": {
+        "get-stream/stream": "^2.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohamed Moughamir",
+            "email": "moughamir@gmail.com"
+        }
+    ]
+}

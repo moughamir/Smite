@@ -1,0 +1,1923 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    min-width: 1170px;
+}
+
+.network-bar {
+    display:none;
+}
+
+/* Team names display */
+.team-name.team-1, .team-name.team-2 {
+  width: 485px;
+  height: 58px;
+  position: absolute;
+  left: 50%;
+  z-index: 96;
+  top: 0;
+  text-align: center;
+  line-height: 58px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.team-name.team-2{
+    text-indent: 30px;
+    background: url('/themes/hots/images/draft/r-team-name-bkg-red.png') bottom center no-repeat;
+}
+
+.team-name.team-1 {
+    background: url('/themes/hots/images/draft/l-team-name-bkg.png') bottom center no-repeat;
+    margin-left: -490px;
+}
+
+/* Picks display */
+.picks-wrapper {
+    width: 100%;
+    height: 281px;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    z-index: 10;
+}
+
+.pick {
+    width: 333px;
+    height: 281px;
+    position: absolute;
+    z-index: 26;
+    top: 0;
+}
+
+.ban-indicator {
+    font-size: 10px;
+    font-family: "Oswald", "Open sans", Arial, Tahoma, sans-serif;
+    position: absolute;
+    top: 104px;
+    color: #888;
+}
+
+.ban-indicator.team-1 {
+    left: 120px;
+    top: 225px;
+}
+
+.ban-indicator.team-2 {
+    right: 120px;
+    top: 230px;
+}
+
+.firstpick-indicator {
+    font-size: 12px;
+    font-family: "Oswald", "Open sans", Arial, Tahoma, sans-serif;
+    position: absolute;
+    text-transform: uppercase;
+    top: 24px;
+    color: #ccc;
+    display: none;
+}
+
+.firstpick-indicator.team-1 { left: 0; top: 45px; }
+.firstpick-indicator.team-2 { right: 0; top: 50px; }
+
+/** Pick holders */
+.team-1 .pick { background: url('/themes/hots/images/draft/holders/teams/l-normal.png') center center no-repeat; }
+.team-2 .pick { background: url('/themes/hots/images/draft/holders/teams/r-normal.png') center center no-repeat; }
+
+/* todo: sort out what image should be shown when empty */
+
+.pick .overlay { height: 281px; }
+.team-1 .pick.pick-state-none:not(.pick-current):not(.pick-current-turn) { background-image: url('/themes/hots/images/draft/holders/teams/l-empty.png'); }
+.team-2 .pick.pick-state-none:not(.pick-current):not(.pick-current-turn) { background-image: url('/themes/hots/images/draft/holders/teams/r-empty-red.png'); }
+
+.team-1 .pick.pick-type-p.pos-1 { left: 0; }
+.team-1 .pick.pick-type-p.pos-2 { left: 104px; }
+.team-1 .pick.pick-type-p.pos-3 { left: 208px; }
+.team-1 .pick.pick-type-p.pos-4 { left: 312px; }
+.team-1 .pick.pick-type-p.pos-5 { left: 416px; }
+
+.team-2 .pick.pick-type-p.pos-1 { right: 0; }
+.team-2 .pick.pick-type-p.pos-2 { right: 104px; }
+.team-2 .pick.pick-type-p.pos-3 { right: 208px; }
+.team-2 .pick.pick-type-p.pos-4 { right: 312px; }
+.team-2 .pick.pick-type-p.pos-5 { right: 416px; }
+
+/** Ban holders **/
+.pick.pick-type-b {
+    top: 160px;
+    z-index: 10;
+    opacity: 0.4;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+}
+
+.team-1 .pick.pick-type-b.pos-1 { left: 52px; }
+.team-1 .pick.pick-type-b.pos-2 { left: 138px; }
+.team-1 .pick.pick-type-b.pos-3 { left: 222px; }
+.team-1 .pick.pick-type-b.pos-4 { left: 306px; }
+
+.team-2 .pick.pick-type-b.pos-1 { right: 52px; }
+.team-2 .pick.pick-type-b.pos-2 { right: 138px; }
+.team-2 .pick.pick-type-b.pos-3 { right: 222px; }
+.team-2 .pick.pick-type-b.pos-4 { right: 306px; }
+
+/** Hero portraits */
+.portrait {
+    position: absolute;
+    width: 333px;
+    height: 281px;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    background: no-repeat center center;
+}
+
+.portrait span {
+    display: block;
+    width: 100px;
+    text-align: center;
+    font-size: 11px;
+    top: 190px;
+    left: 145px;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+.pick-state-none .portrait  {
+    display: none;
+}
+
+.pick-state-preliminary .portrait  {
+    opacity: .2;
+}
+
+.team-2 .portrait {
+    -webkit-transform:scaleX(-1);
+    -moz-transform:scaleX(-1);
+    -ms-transform:scaleX(-1);
+    -o-transform:scaleX(-1);
+    transform:scaleX(-1);
+}
+.team-2 .portrait span {
+    -webkit-transform:scaleX(-1);
+    -moz-transform:scaleX(-1);
+    -ms-transform:scaleX(-1);
+    -o-transform:scaleX(-1);
+    transform:scaleX(-1);
+}
+
+.team-1 .pick-current .overlay { background-image: url('/themes/hots/images/draft/holders/teams/l-selecting.png'); }
+.team-2 .pick-current .overlay { background-image: url('/themes/hots/images/draft/holders/teams/r-selecting-red.png'); }
+
+/*.pick-current .portrait { display: none; }*/
+
+.team-1 .selecting {
+    background-image: url('/themes/hots/images/draft/holders/teams/l-selected.png');
+    z-index: 30;
+    opacity:1;
+}
+
+.team-2 .selecting {
+    background-image: url('/themes/hots/images/draft/holders/teams/r-selected.png');
+    z-index: 30;
+    opacity:1;
+}
+
+.selecting .portrait {
+    display: block;
+}
+
+.inactive {
+    opacity: 0.5;
+}
+
+/** Side current team turn indicator */
+.side-select {
+    display: none;
+    position: fixed;
+    z-index: 11;
+    height: 100%;
+    /*width: px;*/ /* Fixme: Set this to something */
+    background: #4c3fee;
+    -webkit-animation-name: pulsate; /* Todo: Can this work in other browsers not based on webkit? */
+    -webkit-animation-duration: 3s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    box-shadow: 0 0 250px 50px #4c3fee;
+    top:0;
+}
+
+.turn-team-one .side-select.team-1,
+.turn-team-two .side-select.team-2 {
+    display: block;
+}
+
+.side-select:after {
+    left: 100%;
+    top: 50%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border: 46px solid rgba(136, 183, 213, 0);
+    border-left-color: #4c3fee;
+    margin-top: -30px;
+}
+
+.side-select:before {
+    right: 100%;
+    top: 50%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border: 46px solid rgba(136, 183, 213, 0);
+    border-right-color: #4c3fee;
+    margin-top: -30px;
+}
+
+.side-select.team-2 { box-shadow: 0 0 250px 50px #ff0f05; }
+
+.side-select.team-2:before{ border-right-color: rgba(212, 46, 64, 0.9); }
+
+@-webkit-keyframes pulsate {
+    0% { opacity: .30}
+    10% { opacity: .40}
+    20% { opacity: .50}
+    30% { opacity: .60}
+    40% { opacity: .80}
+    50% { opacity: 0.9}
+    60% { opacity: .80}
+    70% { opacity: .60}
+    80% { opacity: .50}
+    90% { opacity: .40}
+    100% { opacity: .30}
+}
+
+.team-1.side-select {
+    left: 0;
+    background: url('../images/draft/l-side-select.png');
+}
+
+.team-2.side-select {
+    right: 0;
+    background: url('../images/draft/r-side-select.png');
+}
+
+.state-completed .map,
+.state-draft .map {
+    width: 850px;
+    height: 204px;
+    position: absolute;
+    top: 316px;
+    left: 50%;
+    margin-left: -416px;
+    background: no-repeat center center;
+    background: url('../images/draft/map-frame.png');
+    perspective: 200px;
+    perspective-origin: center;
+}
+
+.state-completed .map .map-perspective,
+.state-draft .map .map-perspective {
+    height: 120px;
+    margin: 0 auto;
+    width: 300px;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: rotateX(-28deg);
+    overflow: hidden;
+    top: 35px;
+    position: relative;
+}
+
+.state-completed .map .map-perspective .map-counter-perspective,
+.state-draft .map .map-perspective .map-counter-perspective {
+    height: 120%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform-origin: center;
+    transform: rotateX(28deg);
+    position: absolute;
+    top: -10%;
+    transform-style: preserve-3d;
+}
+
+.state-completed .map .map-perspective .map-counter-perspective:after,
+.state-draft .map .map-perspective .map-counter-perspective:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+background: rgba(33,34,56,0);
+background: -moz-linear-gradient(top, rgba(33,34,56,0) 0%, rgba(23,22,38,0) 55%, rgba(14,13,24,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(33,34,56,0)), color-stop(55%, rgba(23,22,38,0)), color-stop(100%, rgba(14,13,24,1)));
+background: -webkit-linear-gradient(top, rgba(33,34,56,0) 0%, rgba(23,22,38,0) 55%, rgba(14,13,24,1) 100%);
+background: -o-linear-gradient(top, rgba(33,34,56,0) 0%, rgba(23,22,38,0) 55%, rgba(14,13,24,1) 100%);
+background: -ms-linear-gradient(top, rgba(33,34,56,0) 0%, rgba(23,22,38,0) 55%, rgba(14,13,24,1) 100%);
+background: linear-gradient(to bottom, rgba(33,34,56,0) 0%, rgba(23,22,38,0) 55%, rgba(14,13,24,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#212238', endColorstr='#0e0d18', GradientType=0 );
+}
+
+.state-completed .map span,
+.state-draft .map span {
+    font-size: 26px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.timers {
+    position: absolute;
+    background: url('/themes/hots/images/draft/countdown-bkg.png') bottom center no-repeat;
+    width: 248px;
+    height: 196px;
+    top: 80px;
+    left: 50%;
+    margin-left: -124px;
+    z-index: 96;
+}
+
+.timers .main {
+    font-size: 66px;
+    position: absolute;
+    width: 120px;
+    bottom: 54px;
+    left: 50%;
+    margin-left: -58px;
+    text-align: center;
+}
+
+.timers .time-pool  {
+    display: none;
+    position: absolute;
+    bottom: 72px;
+    font-weight: 100;
+    color: #bbb;
+}
+
+.draft-hero .timers .time-pool  {
+    display: block;
+}
+
+.timers .time-pool label,
+.timers .time-pool span {
+    display: block;
+}
+
+.timers .time-pool label {
+    text-transform: uppercase;
+    font-size: 10px;
+    width: 20px;
+    line-height: 10px;
+}
+
+.timers .time-pool span {
+    font-size: 22px;
+}
+
+.timers .time-pool.team-1 {
+    left: 40px;
+    text-align: right;
+}
+
+.timers .time-pool.team-2 {
+    right: 32px;
+    text-align: left;
+}
+
+.button-holder-confirm {
+    position: absolute;
+    top: 570px;
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+    text-align: center;
+    font-weight: 100;
+}
+
+.heroes-pool .portrait, .heroes-pool .pick {
+    width: 120px;
+    height: 180px;
+    background-position: center center;
+}
+
+.heroes-pool ul, .heroes-pool li {
+    display: block;
+}
+
+.heroes-pool li {
+    position: relative;
+    float: left;
+    transform: scale(0.6);
+    opacity: 0.4;
+}
+
+.turn-viewer-team .heroes-pool li:hover {
+    opacity: 1;
+}
+
+.heroes-pool-container,
+.maps-select {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    text-align: center;
+    z-index: 100;
+}
+
+.maps-select {
+    color: #ccc;
+    font-family: 'Oswald', 'Open sans', Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-transform: uppercase;
+
+    margin-left: -640px;
+    width: 1280px;
+}
+
+.heroes-pool-container {
+    font-size: 0;
+    margin-left: -820px;
+    margin-bottom: 30px;
+    width: 1560px;
+}
+
+.team-maps ul {
+    display: block;
+    list-style: none;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-family: 'Oswald', 'Open sans', Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    position: absolute;
+    top: 40px;
+    text-shadow: 0 0 10px #eee;
+    text-decoration: line-through;
+}
+
+.heroes-pool-container ul, .maps-select ul {
+    height: 60px;
+    list-style: none;
+    text-align: center;
+}
+
+.maps-select li {
+    padding: 4px 0;
+}
+
+.maps-select table {
+    font-size: 20px;
+    margin-left: 20px;
+    width: 100%;
+}
+
+.maps-select table td {
+    padding: 15px;
+    vertical-align: top;
+    width: 50%;
+}
+
+.maps-select table td {
+    text-align: left;
+}
+.maps-select table td:nth-child(1) {
+    text-align: right;
+}
+
+.heroes-pool-container ul:nth-child(even).heroes-pool-heroes-odd-count,
+.heroes-pool-container ul:nth-child(odd).heroes-pool-heroes-even-count {
+    margin-left: 80px;
+}
+
+.heroes-pool-container .pickable {
+    transition: background 250ms;
+    width: 80px;
+    height: 91px;
+    vertical-align: top;
+    display: inline-block;
+    background: url('/themes/hots/images/draft/select/select_bg_picked.png');
+    position: relative;
+}
+
+.heroes-pool-container ul li.pickable-available {
+    background: url('/themes/hots/images/draft/select/select_bg.png');
+}
+
+.turn-viewer-team .heroes-pool-container .pickable.pickable-available {
+    cursor: pointer;
+}
+
+.heroes-pool-container .pickable .heroes-pool-hero {
+    transition: opacity 250ms;
+    opacity: .25;
+    width: 80px;
+    height: 91px;
+    background-size: 80px 91px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.heroes-pool-container .pickable .heroes-pool-inner {
+    transition: background 250ms;
+    width: 80px;
+    height: 91px;
+    background: url('/themes/hots/images/draft/select/select_inner_picked.png');
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.heroes-pool-container .pickable-available .heroes-pool-inner {
+    background: url('/themes/hots/images/draft/select/select_inner.png');
+}
+
+.heroes-pool-container .pickable.pickable-available .heroes-pool-hero {
+    opacity: 1;
+}
+
+.turn-viewer-team .heroes-pool-container .pickable-available:hover{
+    background: url('/themes/hots/images/draft/select/select_bg_hover.png');
+}
+
+.heroes-pool-container ul li.pick-select .heroes-pool-inner {
+    background: url('/themes/hots/images/draft/select/select_bg_hover.png');
+}
+
+.turn-viewer-team .heroes-pool-container ul li.pickable-available.pickable:hover .heroes-pool-inner {
+    background: url("/themes/hots/images/draft/select/select_bg_hover.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.turn-viewer-team .maps-pool .pickable-available {
+    cursor: pointer;
+}
+
+.maps-pool .pickable-banned {
+    display: none;
+}
+
+.turn-viewer-team .maps-pool .pickable-available:hover,
+.maps-pool .pickable-available.preliminary {
+    text-shadow: 0 0 10px #eee;
+    text-decoration: line-through;
+    color: #fff;
+}
+
+.button-holder button {
+    border: 0;
+}
+
+.turn-viewer-team .button-holder button {
+    cursor: pointer;
+}
+
+button.confirm {
+    width: 365px;
+    height: 58px;
+    margin: 0 auto;
+    border-radius: 1000px;
+    line-height: 56px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    font-family: "Oswald", "Open Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    z-index: 100;
+    transition: 150ms all;
+}
+
+.state-lobby button.confirm,
+.current-pick-type-p button.confirm {
+    background: rgb(84,37,224);
+    background: -moz-linear-gradient(top, rgba(84,37,224,1) 0%, rgba(77,73,236,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(84,37,224,1)), color-stop(100%,rgba(77,73,236,1)));
+    background: -webkit-linear-gradient(top, rgba(84,37,224,1) 0%,rgba(77,73,236,1) 100%);
+    background: -o-linear-gradient(top, rgba(84,37,224,1) 0%,rgba(77,73,236,1) 100%);
+    background: -ms-linear-gradient(top, rgba(84,37,224,1) 0%,rgba(77,73,236,1) 100%);
+    background: linear-gradient(to bottom, rgba(84,37,224,1) 0%,rgba(77,73,236,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5425e0', endColorstr='#4d49ec',GradientType=0 );
+
+    box-shadow: 0 0 10px #000;
+    -moz-box-shadow: 0 0 10px #000;
+}
+
+.state-lobby button.confirm,
+.turn-viewer-team.current-pick-type-p button.confirm:hover {
+    background: rgb(84,37,224);
+    background: -moz-linear-gradient(top, rgba(84,37,224,1) 0%, rgba(81,84,255,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(84,37,224,1)), color-stop(100%,rgba(81,84,255,1)));
+    background: -webkit-linear-gradient(top, rgba(84,37,224,1) 0%,rgba(81,84,255,1) 100%);
+    background: -o-linear-gradient(top, rgba(84,37,224,1) 0%,rgba(81,84,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(84,37,224,1) 0%,rgba(81,84,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(84,37,224,1) 0%,rgba(81,84,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5425e0', endColorstr='#5154ff',GradientType=0 );
+    box-shadow: 0 0 40px #5425E0;
+    -moz-box-shadow: 0 0 40px #5425E0;
+}
+
+.current-pick-type-b button.confirm {
+    background: rgb(194, 58, 80);
+    background: -moz-linear-gradient(top, rgb(194, 58, 80) 0%, rgb(177, 73, 110) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(194, 58, 80)), color-stop(100%, rgb(177, 73, 110)));
+    background: -webkit-linear-gradient(top, rgb(194, 58, 80) 0%,rgb(177, 73, 110) 100%);
+    background: -o-linear-gradient(top, rgb(194, 58, 80) 0%,rgb(177, 73, 110) 100%);
+    background: -ms-linear-gradient(top, rgb(194, 58, 80) 0%,rgb(177, 73, 110) 100%);
+    background: linear-gradient(to bottom, rgb(194, 58, 80) 0%,rgb(177, 73, 110) 100%);
+}
+
+.turn-viewer-team.current-pick-type-b button.confirm:hover {
+    box-shadow: 0 0 40px rgb(194, 58, 80);
+    -moz-box-shadow: 0 0 40px rgb(194, 58, 80);
+}
+
+.pick-current.pick-type-b {
+    opacity: 1;
+    z-index: 32;
+}
+
+.button-holder-type-ready {
+    position: absolute;
+    top: 146px;
+    text-align: center;
+    width: 365px;
+}
+.button-holder-type-ready.team-1 { left: 200px; }
+.button-holder-type-ready.team-2 { right: 200px; }
+
+/* Todo: The ready button state needs to be sorted out */
+.button-holder-type-ready.button-holder-state-ready button.ready {
+    display: block;
+    width: 365px;
+    height: 58px;
+    margin: 0 auto;
+    border-radius: 1000px;
+    /* The background colors are wrong for all vendor prefixes */
+    background: rgb(84,37,224);
+    background: -moz-linear-gradient(top,  rgba(84,37,224,1) 0%, rgba(77,73,236,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(84,37,224,1)), color-stop(100%,rgba(77,73,236,1)));
+    background: -webkit-linear-gradient(top,  rgba(84,37,224,1) 0%,rgba(77,73,236,1) 100%);
+    background: -o-linear-gradient(top,  rgba(84,37,224,1) 0%,rgba(77,73,236,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(84,37,224,1) 0%,rgba(77,73,236,1) 100%);
+    background: linear-gradient(to bottom, rgb(81, 149, 80) 0%, rgb(110, 210, 47) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5425e0', endColorstr='#4d49ec',GradientType=0 );
+    line-height: 56px;
+    text-transform: uppercase;
+    text-align: center;
+    border: 0;
+    color: #fff;
+    font-family: "Oswald", "Open Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    box-shadow: 0 0 10px #000;
+    -moz-box-shadow:  0 0 10px #000;
+    z-index: 100;
+    cursor: pointer;
+    transition: 150ms all;
+}
+
+.button-holder > span {
+    padding-top: 20px;
+    display: block;
+    font-weight: 100;
+}
+
+.pick-hero-text {
+    /* Todo */
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 20px;
+    font-size:18px
+}
+
+.ggnet.on-layout {
+    bottom: 20px;
+    position: fixed;
+    right: 20px;
+    z-index:5;
+}
+
+.abandoned {
+    margin: 100px auto 0;
+    width:280px;
+    text-align: center;
+}
+
+.load-model{
+    display:none;
+}
+
+.select-text.settings span {
+    width: 100%;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.select-text.settings {
+    left: 50%;
+    margin-left: -200px;
+    position: absolute;
+    text-align: center;
+    top: 300px;
+    width: 400px;
+}
+
+.select-text.settings span.tournament-name {
+    font-size:30px;
+}
+
+.select-text.settings span {
+    font-size: 24px;
+}
+
+.select-text.settings span.settings-title {
+    margin-top:10px;
+    color:#7e73ff;
+    font-size: 17px;
+    font-weight: 100;
+    margin-bottom:0;
+}
+
+div.maps-wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 1100px;
+}
+
+.team-maps.team-1 ul {
+    width: 350px;
+    text-align: right;
+    left: 0;
+}
+
+.team-maps.team-2 ul {
+    width: 350px;
+    text-align: left;
+    right:0;
+}
+
+/** State dependant elements */
+.firstpick-team-one .firstpick-indicator.team-1 { display: block; }
+.firstpick-team-two .firstpick-indicator.team-2 { display: block; }
+
+/** Buttons **/
+.button-holder.button-holder-stateful > * { display: none; }
+.button-holder.button-holder-state-waiting-for-team .waiting-for-team { display: block; }
+.button-holder.button-holder-state-ready .ready { display: block; }
+.button-holder.button-holder-state-draft-completed .draft-completed { display: block; }
+
+.current-pick-type-b .button-holder-state-waiting .waiting-ban,
+.current-pick-type-p .button-holder-state-waiting .waiting-pick {
+    display: block;
+}
+
+
+.state-lobby.viewer-team-one .button-holder-state-confirm.team-1 .confirm-ready,
+.state-lobby.viewer-team-two .button-holder-state-confirm.team-2 .confirm-ready,
+.turn-viewer-team.current-pick-type-b .button-holder-state-confirm .confirm-ban,
+.turn-viewer-team.current-pick-type-p .button-holder-state-confirm .confirm-pick {
+    display: block;
+}
+
+.state-completed .timers {
+    display: none;
+}
+
+/*---/////   Responsiveness rules - don't put anything else after this line   ////---*/
+
+@media screen and (max-width: 1520px) {
+    .wrapper {
+        min-width: 1280px;
+        min-height: 730px;
+    }
+
+    .timers {
+        top: 40px;
+        background: transparent;
+    }
+
+    .timers .main {
+        font-size: 53px;
+        bottom: 56px;
+        text-shadow: 0 0 20px #6246FF;
+    }
+
+    .time-pool {
+        bottom: 130px;
+    }
+
+    .team-2.time-pool {
+        right: 6px;
+        text-align: left;
+    }
+
+    .team-1.time-pool {
+        left: 8px;
+        text-align: right;
+    }
+
+    .time-pool span {
+        font-size: 18px;
+    }
+
+    .time-pool label {
+        text-transform: uppercase;
+        font-size: 9px;
+        width: 36px;
+        line-height: 10px;
+    }
+
+    .picks-display.team-1 {
+        left: -48px;
+        position: absolute;
+
+    }
+
+    .picks-display.team-2 {
+        right: -48px;
+        position: absolute;
+    }
+
+    .state-completed .map,
+    .state-draft .map {
+        top: 232px;
+        transform: scale(0.6);
+        -webkit-transform: scale(0.6);
+    }
+
+    .button-holder-confirm {
+        top: 408px;
+    }
+
+    .heroes-pool-container, .maps-select {
+        bottom: 8px;
+    }
+
+    .ban-indicator.team-1 {
+        left: 75px;
+    }
+
+    .ban-indicator.team-2 {
+        right: 75px;
+    }
+
+    .firstpick-indicator.team-1 {
+        left: -20px;
+    }
+
+    .firstpick-indicator.team-2 {
+        right: -20px;
+    }
+}
+
+/** Observer styles **/
+.template-default.viewer-type-observer .draft-hero .map {
+    top: 500px;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-1 {
+    left: 0;
+    position: absolute;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-2 {
+    right: 0;
+    position: absolute;
+}
+
+.template-default.viewer-type-observer .draft-hero .pick {
+    width: 97px;
+    height: 300px;
+    background: transparent !important;
+}
+
+.template-default.viewer-type-observer .draft-hero .pick.pick-state-none {
+    opacity: 0.7;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-wrapper {
+    width: 1000px;
+    height: 281px;
+    position: relative;
+    top: 210px;
+    z-index: 10;
+    margin: 0 auto;
+    transition: 300ms;
+    -webkit-transition: 300ms;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-1 {
+    position: relative;
+    float: left;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-2 {
+    position: relative;
+    float: right;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-1 .pick {
+    position: relative;
+    float: left;
+    left: 0;
+    margin-right: 1px;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-2 .pick {
+    position: relative;
+    float: right;
+    left: 0;
+    margin-left: 1px;
+}
+
+.template-default.viewer-type-observer .draft-hero .pick .portrait {
+    position: absolute;
+    width: 97px;
+    background-position: top center;
+    height: 274px;
+}
+
+.template-default.viewer-type-observer .draft-hero .pick .portrait span {
+    top: 274px;
+    left: 0;
+    width: 97px;
+    height: 23px;
+    font-size: 14px;
+    line-height: 22px;
+    background: #1d1b2f;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-2 .portrait span {
+    left: 0;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-1 .pick-type-b {
+    left: -88px;
+    top: 0;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-2 .pick-type-b {
+    right: -88px;
+    top: 0;
+}
+
+.template-default.viewer-type-observer .draft-hero .ban-indicator.team-1 {
+    left: -30px;
+    top: 10px;
+}
+
+.template-default.viewer-type-observer .draft-hero .ban-indicator.team-2 {
+    right: -30px;
+    top: 10px;
+}
+
+.template-default.viewer-type-observer .draft-hero .firstpick-indicator.team-1 {
+    left: 0;
+    top: -24px;
+}
+
+.template-default.viewer-type-observer .draft-hero .firstpick-indicator.team-2 {
+    right: 0;
+    top: -24px;
+}
+
+.template-default.viewer-type-observer .draft-hero .pick .overlay {
+    background-position: top center;
+    background-size: auto 274px;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 274px; /* Todo: originally 100%; should it be dynamic? */
+    z-index: 30;
+}
+
+body.viewer-type-observer {
+    overflow: hidden;
+}
+
+.template-default.viewer-type-observer .draft-hero .team-1 .pick-state-none .overlay {
+    background-image: url('/themes/hots/images/draft/holders/observer/l-empty.png');
+}
+
+.template-default.viewer-type-observer .draft-hero .team-2 .pick-state-none .overlay {
+    background-image: url('/themes/hots/images/draft/holders/observer/r-empty-red.png');
+}
+
+.template-default.viewer-type-observer .draft-hero .team-1 .pick-current-turn .overlay {
+    background-image: url('/themes/hots/images/draft/holders/observer/l-selecting.png');
+}
+
+.template-default.viewer-type-observer .draft-hero .team-2 .pick-current-turn .overlay {
+    background-image: url('/themes/hots/images/draft/holders/observer/r-selecting-red.png');
+}
+
+.template-default.viewer-type-observer .draft-hero .team-1 .pick-state-confirmed .overlay {
+    background-image: url('/themes/hots/images/draft/holders/observer/l-selecting.png');
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-2 .pick-state-confirmed .overlay {
+    background-image: url('/themes/hots/images/draft/holders/observer/r-selecting-red.png');
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-1 .pick-current-turn {
+    box-shadow: 0 0 40px #5F43FC;
+    box-sizing: border-box;
+    border: 1px solid #5F43FC;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.team-2 .pick-current-turn {
+    border: 1px solid #DB4063;
+    box-shadow: 0 0 40px #D73951;
+    box-sizing: border-box;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b {
+    position: absolute;
+    width: 400px;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-1 {
+    left: -359.6px;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-2 {
+    right: -359.6px;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b .pick {
+    float: right;
+    position: relative;
+    left: initial !important;
+    display: block;
+    transform: initial;
+    -webkit-transform: initial;
+    right: initial !important;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-2 .pick {
+    float: left;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-1 .pick.pos-1 {
+    left: 0;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-1 .pick.pos-2 {
+    left: 240px;
+}
+
+.template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-1 .pick.pos-3 {
+    left: 306px;
+}
+
+@media (min-width: 1740px) {
+    .template-default.viewer-type-observer .draft-hero .picks-wrapper {
+        width: 1500px;
+        height: 395px;
+        top: 300px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .picks-wrapper .pick {
+        width: 140px;
+        height: 424px;
+    }
+
+/*        .pick.select {
+            height: 395px;
+        }*/
+
+    .template-default.viewer-type-observer .draft-hero .picks-wrapper .portrait {
+        width: 140px;
+        height: 395px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .picks-wrapper .pick .overlay {
+        background-size: auto 395px;
+        height: 395px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .map {
+        top: 770px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .pick .portrait span {
+        width: 140px;
+        font-size: 12px;
+        top: 395px;
+        left: 0;
+        height: 27px;
+        line-height:26px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-1 .pick {
+        left: -127px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .picks-display.picks-display-type-b.team-2 .pick {
+        right: -127px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .ban-indicator.team-1 {
+        left: -50px;
+        top: 20px;
+    }
+
+    .template-default.viewer-type-observer .draft-hero .ban-indicator.team-2 {
+        right: -50px;
+        top: 20px;
+    }
+}
+
+/*********************************/
+/* OBSERVER TEMPLATE: DHALLSTARS */
+/*********************************/
+
+/* Note: The body will have the classes .template-dhallstars and .viewer-type-observer.  */
+
+body.template-dhallstars {
+    background: #062136;
+}
+
+body.template-dhallstars.viewer-type-observer.state-draft-hero,
+body.template-dhallstars.viewer-type-observer.state-completed {
+    background-image: url(/themes/hots/images/triangles.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -2px;
+}
+
+/* Prefix everything else with: .template-dhallstars.viewer-type-observer .draft-hero */
+.template-dhallstars.viewer-type-observer .logo,
+.template-dhallstars.viewer-type-observer .team-name {
+    display: none;
+}
+
+.template-dhallstars.viewer-type-observer * {
+    box-sizing: border-box;
+    color: #a2b7d0;
+}
+
+.template-dhallstars.viewer-type-observer .draft-hero {
+    height: 100%;
+    width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.template-dhallstars.viewer-type-observer .mesh {
+    display: none;
+}
+
+.template-dhallstars.viewer-type-observer .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    min-width: inherit;
+    margin: 0 auto;
+    z-index: auto;
+    background-size: 25%;
+}
+
+.template-dhallstars.viewer-type-observer .triangles-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: no-repeat;
+    background-size: cover;
+}
+
+.template-dhallstars.viewer-type-observer .header {
+    height: 100%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper {
+    width: auto;
+    height: auto;
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: auto;
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper:after {
+    height: 288px;
+    width: 40%;
+    position: absolute;
+    top: 98px;
+    left: 30%;
+    content: "";
+    box-shadow: inset 0px 0px 0px 1px #A0DDFF, 0px 0px 10px 0px #4588b3;
+    border-radius: 1px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p {
+    position: relative;
+    float: left;
+    width: 356px;
+    top: 98px;
+    height: 313px;
+    transform: skewY(-28deg);
+    transform-origin: right;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 {
+    float: right;
+    transform: skewY(28deg);
+    transform-origin: left;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick {
+    width: 19%;
+    margin-right: 1%;
+    height: 100%;
+    float: left;
+    position: relative;
+    background: none;
+    left: auto;
+    right: auto;
+    z-index: auto;
+    top: auto;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .pick {
+    margin-right: 0;
+    margin-left: 1%;
+    float: right;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .overflow {
+    overflow: hidden;
+    height: 287px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .portrait {
+    position: relative;
+    width: auto;
+    height: auto;
+    top: -16px;
+    left: auto;
+    z-index: auto;
+
+    width: 100%;
+    transform-origin: top;
+    transform: skewY(28deg);
+    height: 333px;
+    background-position: top;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .portrait {
+    transform: skewY(-28deg) scaleX(-1);
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .overlay span {
+    position: absolute;
+    bottom: 0px;
+    padding: 5px 0;
+    width: auto;
+    height: auto;
+    top: auto;
+    left: auto;
+    z-index: auto;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 1;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .overlay span {
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick .overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    background-image: none;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick .overlay:after {
+    content: "";
+    height: 287px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    box-sizing: content-box;
+    box-shadow:
+        inset 0px 0px 0px 1px #C7E5FF,
+        0px 0px 10px 0px #0075DA,
+        inset 0px 0px 10px 0px #0075DA,
+        inset 0px -6px 0 #071c33,
+        inset 0px -7px 0px 0px #C7E5FF,
+        inset 0px -9px 7px 0px #0075DA,
+        inset 0px 6px 0 #071c33,
+        inset 0px 7px 0px 0px #C7E5FF,
+        inset 0px 9px 7px 0px #0075DA
+        ;
+    border-radius: 1px;
+    z-index: 1;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .overlay:after {
+    box-shadow:
+        inset 0px 0px 0px 1px #FFC7C7,
+        0px 0px 10px 0px #d1304b,
+        inset 0px 0px 10px 0px #d1304b,
+        inset 0px -6px 0 #333254,
+        inset 0px -7px 0px 0px #FFC7C7,
+        inset 0px -9px 7px 0px #d1304b,
+        inset 0px 6px 0 #333254,
+        inset 0px 7px 0px 0px #FFC7C7,
+        inset 0px 9px 7px 0px #d1304b
+        ;
+}
+
+/*bans___*/
+
+.template-dhallstars.viewer-type-observer .ban-indicator {
+    font-family: 'Jura', sans-serif;
+    font-size: 20px;
+    top: 565px;
+    z-index: 2;
+    left: 12%;
+    right: auto;
+    font-weight: 600;
+}
+
+.template-dhallstars.viewer-type-observer .ban-indicator.team-2 {
+    right: 12%;
+    left: auto;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b {
+    left: auto;
+    right: auto;
+    position: absolute;
+    height: 90px;
+    width: 356px;
+    top: 552px;
+    transform-origin: left;
+    transform: skewY(-28deg);
+    left: 223px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 {
+    transform-origin: right;
+    transform: skewY(28deg);
+    left: auto;
+    right: 223px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick {
+    position: relative;
+    width: 70px;
+    height: 100%;
+    top: auto;
+    background: none;
+    opacity: 1;
+    left: auto;
+    float: left;
+    right: auto;
+    transform: none;
+    margin-right: 1%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 .pick {
+    float: right;
+    margin-left: 1%;
+    margin-right: 0;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick .portrait {
+    position: relative;
+    width: 100%;
+    height: 123px;
+    top: auto;
+    left: auto;
+    background-position: center -60px;
+    transform-origin: center;
+    top: -16px;
+    transform: skewY(28deg);
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick .overlay {
+    position: absolute;
+    height: 90px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    background-image: none;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick-current .overlay:before {
+    height: 365px;
+    left: -17px;
+    top: -40px;
+    width: 100px;
+    transform: skewY(28deg);
+    content: "";
+    position: absolute;
+    background-image: url(/themes/hots/images/current-decoration-1-p.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    z-index: -1;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .pick-current .overlay:before {
+    transform: skewY(-28deg);
+    background-image: url(/themes/hots/images/current-decoration-2-p.png);
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-current .overlay:before {
+    height: 145px;
+    top: -40px;
+    left: -14px;
+    width: 100px;
+    transform: skewY(28deg);
+    content: "";
+    position: absolute;
+    background-image: url(/themes/hots/images/current-decoration-1-b.png?);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 .pick-current .overlay:before {
+    height: 145px;
+    top: -39px;
+    left: -15px;
+    width: 100px;
+    transform: skewY(-28deg);
+    content: "";
+    position: absolute;
+    background-image: url(/themes/hots/images/current-decoration-2-b.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick .overlay:after {
+    content: "";
+    height: 67px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-shadow:
+        inset 0px 0px 0px 1px #C7E5FF,
+        0px 0px 10px 0px #0075DA,
+        inset 0px 0px 10px 0px #0075DA
+        ;
+    border-radius: 1px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 .pick .overlay:after {
+    box-shadow:
+        inset 0px 0px 0px 1px #FFC7C7,
+        0px 0px 10px 0px #d1304b,
+        inset 0px 0px 10px 0px #d1304b
+        ;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 .pick-current .overlay:after {
+    box-shadow:
+        inset 0px 0px 0px 1px #f75656,
+        0px 0px 10px 0px #ff274c,
+        inset 0px 0px 10px 0px #ff274c
+        ;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-1 .pick-current .overlay:after {
+    box-shadow:
+        inset 0px 0px 0px 1px #3ea6ff,
+        0px 0px 10px 0px #0075DA,
+        inset 0px 0px 10px 0px #0075DA
+        ;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick .overflow {
+    height: 67px;
+    overflow: hidden;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 .pick .portrait {
+    transform-origin: center;
+    transform: skewY(-28deg) scaleX(-1);
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick .overlay span {
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .pick-current .overlay:after {
+    box-shadow:
+        inset 0px 0px 0px 1px #f75656,
+        0px 0px 10px 0px #d1304b,
+        inset 0px 0px 10px 0px #ff274c,
+        inset 0px -6px 0 #F57C8B,
+        inset 0px -7px 0px 0px #f75656,
+        inset 0px -9px 7px 0px #ff274c,
+        inset 0px 6px 0 #F57C8B,
+        inset 0px 7px 0px 0px #f75656,
+        inset 0px 9px 7px 0px #ff274c;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-1 .pick-current .overlay:after {
+    box-shadow:
+        inset 0px 0px 0px 1px #3ea6ff,
+        0px 0px 10px 0px #0075DA,
+        inset 0px 0px 10px 0px #0075DA,
+        inset 0px -6px 0 #57D4FF,
+        inset 0px -7px 0px 0px #3ea6ff,
+        inset 0px -9px 7px 0px #0075DA,
+        inset 0px 6px 0 #57D4FF,
+        inset 0px 7px 0px 0px #3ea6ff,
+        inset 0px 9px 7px 0px #0075DA;
+}
+
+/*map___*/
+
+.template-dhallstars.viewer-type-observer .map {
+    transform: none;
+    width: 30%;
+    height: 70px;
+    background-color: #071c33;
+    background-image: none;
+    perspective: none;
+    left: 35%;
+    top: 446px;
+    margin-left: 0;
+
+    overflow: hidden;
+    box-shadow:
+        inset 0px 0px 0px 1px #A0DDFF,
+        0px 0px 10px 0px #4588b3
+        ;
+    border-radius: 1px;
+}
+
+.template-dhallstars.viewer-type-observer .map .map-perspective {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+}
+
+.template-dhallstars.viewer-type-observer .map .map-counter-perspective {
+    background-size: 100%;
+    background-position: center;
+    opacity: 0.4;
+}
+
+.template-dhallstars.viewer-type-observer .map .map-counter-perspective:after {
+    display: none;
+}
+
+.template-dhallstars.viewer-type-observer .map span {
+    font-family: 'Jura', sans-serif;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 600;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    line-height: 70px;
+    color: #FFFFFF;
+    opacity: 0.7;
+
+}
+
+.template-dhallstars.viewer-type-observer .ggnet.on-layout, .template-dhallstars.viewer-type-observer .picks-wrapper .firstpick-indicator {
+    display: none;
+}
+
+/*timers___*/
+
+.template-dhallstars.viewer-type-observer .timers {
+    width: 40%;
+    left: 30%;
+    top: 394px;
+    background-image: none;
+    height: 30px;
+    margin-left: auto;
+}
+
+.template-dhallstars.viewer-type-observer .timers .main {
+    font-family: 'Jura', sans-serif;
+    font-size: 35px;
+    text-shadow: none;
+    font-weight: 600;
+    bottom: auto;
+    margin-left: 0;
+    left: 0;
+    width: 100%;
+    line-height: normal;
+    color: #FFF;
+}
+
+.template-dhallstars.viewer-type-observer .timers .time-pool {
+    font-family: 'Jura', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    bottom: auto;
+    margin-left: 0;
+    left: 0;
+    width: 100%;
+    top: -3px;
+    padding: 0 5px;
+}
+
+.template-dhallstars.viewer-type-observer .timers .team-1.time-pool {
+    text-align: left;
+}
+
+.template-dhallstars.viewer-type-observer .timers .team-2.time-pool {
+    text-align: right;
+}
+
+.template-dhallstars.viewer-type-observer .timers .time-pool label {
+    display: none;
+}
+
+/*animations___*/
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick-current:after {
+    content: "";
+    position: absolute;
+    height: 287px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: content-box;
+    box-shadow: 0 0 10px 3px #0075DA;
+    animation-name: glow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .pick-current:after,
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 .pick-current:after {
+    animation-name: glow2;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p.team-2 .pick-current:after {
+    box-shadow: 0 0 10px 3px #d1304b;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-current:after {
+    content: "";
+    position: absolute;
+    height: 67px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: content-box;
+    box-shadow: 0 0 10px 3px #0075DA;
+    animation-name: glow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b.team-2 .pick-current:after {
+    box-shadow:
+        0 10px 10px -6px #d1304b,
+        0 -10px 10px -6px #d1304b;
+}
+
+@keyframes glow {
+
+    0% {
+        box-shadow:
+        0 15px 20px 0px rgba(0, 117, 218, 1),
+        0 -15px 20px 0px rgba(0, 117, 218, 1);
+    }
+
+    50% {
+        box-shadow:
+        0 15px 20px 0px rgba(0, 117, 218, 0.48),
+        0 -15px 20px 0px rgba(0, 117, 218, 0.48);
+    }
+
+    100% {
+        box-shadow:
+        0 15px 20px 0px rgba(0, 117, 218, 1),
+        0 -15px 20px 0px rgba(0, 117, 218, 1);
+    }
+
+}
+
+@-webkit-keyframes glow {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes glow2 {
+    0% {
+        box-shadow:
+        0 15px 20px 0px rgba(209, 48, 75, 1),
+        0 -15px 20px 0px rgba(209, 48, 75, 1);
+    }
+
+    50% {
+        box-shadow:
+        0 15px 20px 0px rgba(209, 48, 75, 0.48),
+        0 -15px 20px 0px rgba(209, 48, 75, 0.48);
+    }
+
+    100% {
+        box-shadow:
+        0 15px 20px 0px rgba(209, 48, 75, 1),
+        0 -15px 20px 0px rgba(209, 48, 75, 1);
+    }
+}
+
+@-webkit-keyframes glow2 {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+.template-dhallstars.viewer-type-observer .side-select {
+    display: none!important;
+}
+
+@media screen and (max-width: 1520px) {
+    .template-dhallstars.viewer-type-observer .picks-display-type-p {
+        position: relative;
+        left: auto;
+        right: auto;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .template-dhallstars.viewer-type-observer .draft-hero {
+        transform: scale(1.4);
+        transform-origin: top;
+    }
+}
+
+/*z-index fixes*/
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick-current .overlay:before {
+    z-index: 5;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .pick-state-preliminary .portrait {
+    z-index: 6;
+    position: relative;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-state-preliminary .overlay {
+    z-index: 5;
+}
+
+/*lobby*/
+
+.template-dhallstars.state-lobby .timers {
+    top: 158px;
+}
+
+/* Fixing heroes placement */
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-64 .portrait { /*Artanis*/
+    background-position: center -70px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-13 .portrait { /*Jaina*/
+    background-position: center -50px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-14 .portrait { /*Kerrigan*/
+    background-position: center -70px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-29 .portrait { /*Tychus*/
+    background-position: center -50px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-1 .portrait { /*Abathur*/
+    background-position: center -40px;
+    background-size: 130%;
+}
+
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-10 .portrait { /*Gazlowe*/
+    background-position: center -30px;
+    background-size: 130%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-16 .portrait { /*Vikings*/
+    background-position: center -30px;
+    background-size: 130%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-19 .portrait { /*Murky*/
+    background-position: center -22px;
+    background-size: 110%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick-pickable-id-19 .portrait { /*Murky*/
+    background-size: 120% 100%;
+    background-position: center;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-33 .portrait { /*Nazeebo*/
+    background-position: center -47px;
+    background-size: 160%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-34 .portrait { /*Zagara*/
+    background-position: center -47px;
+    background-size: 160%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-5 .portrait { /*Brightwing*/
+    background-position: 70% -47px;
+    background-size: 160%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-p .pick-pickable-id-5 .portrait { /*Brightwing*/
+    background-position: 70% -0px;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-15 .portrait { /*Li Li*/
+    background-position: center -15px;
+    background-size: 100%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-21 .portrait { /*Rehgar*/
+    background-position: center -40px;
+    background-size: 160%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-2 .portrait { /*Anub'Arak*/
+    background-position: 70% -35px;
+    background-size: 130%;
+}
+
+.template-dhallstars.viewer-type-observer .picks-wrapper .picks-display-type-b .pick-pickable-id-114 .portrait { /*Greymane*/
+    background-position: center -40px;
+}

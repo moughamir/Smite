@@ -1,0 +1,19 @@
+#Stage {
+  min-height: 670px;
+}
+
+
+
+.contentArea {
+  position: absolute;
+  left: 80px !important;
+  top: 0px !important;
+  right: 0 !important;
+  bottom: 0px !important;
+  width: auto !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+}
+.content {
+  background-image: url(images/background.jpg);
+}
